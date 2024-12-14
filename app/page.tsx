@@ -15,11 +15,14 @@ const NeonGridBackground = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const handleMouseMove = (event) => {
+    // Add explicit type for the event parameter
+    const handleMouseMove = (event: MouseEvent) => {
       setMousePosition({ x: event.clientX, y: event.clientY });
     };
 
     window.addEventListener('mousemove', handleMouseMove);
+    
+    // Explicitly type the event listener removal
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
@@ -56,7 +59,7 @@ const NeonGridBackground = () => {
 };
 
 const GithubProfileReadme = () => {
-  const [activeSection, setActiveSection] = useState(null);
+  const [activeSection, setActiveSection] = useState<number | null>(null);
 
   const socialLinks = [
     { 
@@ -101,7 +104,7 @@ const GithubProfileReadme = () => {
       content: 'Crafting custom scripts for automation, data processing, and crypto workflows.'
     },
     {
-      icon: <Code color="#FF6B00" size={48} />, // Replaced Gaming with Code
+      icon: <Code color="#FF6B00" size={48} />,
       title: 'Game Development',
       content: 'Designing immersive gaming experiences and interactive workflows.'
     },
