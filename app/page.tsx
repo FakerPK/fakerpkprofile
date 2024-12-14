@@ -105,7 +105,8 @@ const GithubProfileReadme = () => {
       icon: <Code className="text-blue-500" />, 
       color: 'bg-blue-500/10' 
     },
-    { name: 'JavaScript', 
+    { 
+      name: 'JavaScript', 
       icon: <Code className="text-yellow-500" />, 
       color: 'bg-yellow-500/10' 
     },
@@ -191,7 +192,7 @@ const GithubProfileReadme = () => {
           </div>
         </div>
 
-        <div className="bg-gray- 800/50 rounded-lg p-6 mb-8">
+        <div className="bg-gray-800/50 rounded-lg p-6 mb-8">
           <h2 className="text-2xl font-bold mb-4 text-orange-500">💸 Support My Work</h2>
           <div className="grid grid-cols-3 gap-4">
             <div className="bg-gray-900/50 p-4 rounded-lg relative">
@@ -265,7 +266,7 @@ const GithubProfileReadme = () => {
             >
               {social.icon}
             </a>
-          ))}
+ ))}
         </div>
 
         <div className="text-center">
@@ -278,6 +279,7 @@ const GithubProfileReadme = () => {
           />
         </div>
       </div>
+    </div>
   );
 };
 
