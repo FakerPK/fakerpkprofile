@@ -6,8 +6,7 @@ import {
   Wallet, 
   Youtube, 
   Linkedin, 
-  Twitter, 
-  Copy 
+  Twitter
 } from 'lucide-react';
 
 import Image from 'next/image';
