@@ -59,8 +59,7 @@ const NeonGridBackground = () => {
 const GithubProfileReadme = () => {
   const [activeSection, setActiveSection] = useState(null);
 
-  const socialLinks = ```tsx
-  [
+  const socialLinks = [
     { 
       name: 'LinkedIn', 
       icon: <Linkedin className="text-blue-500" />, 
@@ -125,11 +124,12 @@ const GithubProfileReadme = () => {
           {sections.map((section, index) => (
             <div 
               key={index}
-              className={`p-4 rounded-lg text-center cursor-pointer transition-all duration-300
-                ${activeSection === index 
+              className={`p-4 rounded-lg text-center cursor-pointer transition-all ```tsx
+              duration-300 ${
+                activeSection === index 
                   ? 'bg-orange-900/50 scale-105 shadow-lg' 
-                  : 'bg-gray-800/50 hover:bg-orange-900/30 hover:scale-105'}
-              `}
+                  : 'bg-gray-800/50 hover:bg-orange-900/30 hover:scale-105'
+              }`}
               onMouseEnter={() => setActiveSection(index)}
               onMouseLeave={() => setActiveSection(null)}
             >
@@ -163,7 +163,6 @@ const GithubProfileReadme = () => {
             <div className="bg-gray-900/50 p-4 rounded-lg">
               <h3 className="text-blue-400 mb-2">Solana</h3>
               <code className="text-xs break-words">9SqcZjiUAz9SYBBLwuA9uJG4UzwqC5HNWV2cvXPk3Kro</code>
-            ```tsx
             </div>
             <div className="bg-gray-900/50 p-4 rounded-lg">
               <h3 className="text-green-400 mb-2">EVM</h3>
