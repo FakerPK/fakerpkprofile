@@ -13,75 +13,73 @@ import Image from 'next/image';
 const GithubProfileReadme = () => {
   const [activeSection, setActiveSection] = useState<number | null>(null);
   const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
-  const addressRefs = useRef<(HTMLElement | null)[]>([]);
+  const addressRefs = useRef<(HTMLElement | null)[]>([null, null, null]); // Initialize with nulls
 
+  const NeonGridBackground = () => {
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const [backgroundPosition, setBackgroundPosition] = useState({ x: 0, y: 0 });
 
-const NeonGridBackground = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [backgroundPosition, setBackgroundPosition] = useState({ x: 0, y: 0 });
+    useEffect(() => {
+      const handleMouseMove = (event: MouseEvent) => {
+        setMousePosition({ x: event.clientX, y: event.clientY });
+        setBackgroundPosition({ x: event.clientX * 0.1, y: event.clientY * 0.1 });
+      };
 
-  useEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
-      setMousePosition({ x: event.clientX, y: event.clientY });
-      setBackgroundPosition({ x: event.clientX * 0.1, y: event.clientY * 0.1 });
-    };
+      window.addEventListener('mousemove', handleMouseMove);
+      
+      return () => {
+        window.removeEventListener('mousemove', handleMouseMove);
+      };
+    }, []);
 
-    window.addEventListener('mousemove', handleMouseMove);
-    
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
-
-  return (
-    <div 
-      className="fixed inset-0 z-[-1] bg-gradient-to-br from-gray-900 to-black overflow-hidden"
-      style={{
-        backgroundImage: `
-          radial-gradient(
-            circle at ${mousePosition.x}px ${mousePosition.y}px, 
-            rgba(255, 128, 0, 0.1), 
-            transparent 50%
-          ),
-          repeating-linear-gradient(
-            0deg, 
-            rgba(255, 128, 0, 0.05) 0px, 
-            rgba(255, 128, 0, 0.05) 1px, 
-            transparent 1px, 
-            transparent 10px
-          ),
-          repeating-linear-gradient(
-            90deg, 
-            rgba(255, 128, 0, 0.05) 0px, 
-            rgba(255, 128, 0, 0.05) 1px, 
-            transparent 1px, 
-            transparent 10px
-          )
-        `,
-        backgroundSize: '200% 200%',
-        backgroundPosition: `${backgroundPosition.x}px ${backgroundPosition.y}px`,
-        animation: 'backgroundAnimation 30s ease infinite'
-      }}
-    >
-      <style>
-        {`
-          @keyframes backgroundAnimation {
-            0% {
-              background-position: 0% 50%;
+    return (
+      <div 
+        className="fixed inset-0 z-[-1] bg-gradient-to-br from-gray-900 to-black overflow-hidden"
+        style={{
+          backgroundImage: `
+            radial-gradient(
+              circle at ${mousePosition.x}px ${mousePosition.y}px, 
+              rgba(255, 128, 0, 0.1), 
+              transparent 50%
+            ),
+            repeating-linear-gradient(
+              0deg, 
+              rgba(255, 128, 0, 0.05) 0px, 
+              rgba(255, 128, 0, 0.05) 1px, 
+              transparent 1px, 
+              transparent 10px
+            ),
+            repeating-linear-gradient(
+              90deg, 
+              rgba(255, 128, 0, 0.05) 0px, 
+              rgba(255, 128, 0, 0.05) 1px, 
+              transparent 1px, 
+              transparent 10px
+            )
+          `,
+          backgroundSize: '200% 200%',
+          backgroundPosition: `${backgroundPosition.x}px ${backgroundPosition.y}px`,
+          animation: 'backgroundAnimation 30s ease infinite'
+        }}
+      >
+        <style>
+          {`
+            @keyframes backgroundAnimation {
+              0% {
+                background-position: 0% 50%;
+              }
+              50% {
+                background-position: 100% 50%;
+              }
+              100% {
+                background-position: 0% 50%;
+              }
             }
-            50% {
-              background-position: 100% 50%;
-            }
-            100% {
-              background-position: 0% 50%;
-            }
-          }
-        `}
-      </style>
-    </div>
-  );
-};
-
+          `}
+        </style>
+      </div>
+    );
+  };
 
   const socialLinks = [
     { 
@@ -104,7 +102,7 @@ const NeonGridBackground = () => {
   const skills = [
     { 
       name: 'Python', 
-      icon: <Code className="text-blue-500" />, 
+ icon: <Code className="text-blue-500" />, 
       color: 'bg-blue-500/10' 
     },
     { 
