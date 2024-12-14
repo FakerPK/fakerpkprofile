@@ -39,7 +39,7 @@ const GithubProfileReadme = () => {
       ctx.fillStyle = BACKGROUND_COLOR;
       ctx.fillRect(0, 0, canvas.width, canvas.height); // Clear the screen with background color
 
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)'; // White color with transparency
+      ctx.strokeStyle = 'rgba(255, 165, 0, 0.8)'; // Orange color with transparency
       ctx.lineWidth = STROKE_WEIGHT;
       ctx.lineJoin = 'round';
 
@@ -101,6 +101,7 @@ const GithubProfileReadme = () => {
       icon: <Image src="/airdrop-logo.png" alt="Airdrop Logo" width={40} height={40} />, 
       color: 'bg-orange-500/10' 
     }
+ ```javascript
   ];
 
   const sections = [
