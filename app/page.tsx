@@ -148,7 +148,7 @@ const GithubProfileReadme = () => {
     },
     { 
       name: 'Git', 
-      icon: <Image src="/git-logo.png" alt="Airdrop Logo" width={40} height={40} />, 
+      icon: <Image src="/airdrop-logo.png" alt="Airdrop Logo" width={40} height={40} />, 
       color: 'bg-orange-500/10' 
     }
   ];
