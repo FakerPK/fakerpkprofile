@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
-import { Youtube, Linkedin, Twitter } from 'lucide-react';
+import { Code, Wallet, Youtube, Linkedin, Twitter } from 'lucide-react';
 import Image from 'next/image';
 
 const GithubProfileReadme = () => {
@@ -38,7 +38,7 @@ const GithubProfileReadme = () => {
           style={{
             width: '100%',
             height: '100%',
-            backgroundSize: '50px 50px',
+            backgroundSize: '100px 100px', // Increase grid size
             backgroundImage: `
               linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
               linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
@@ -54,11 +54,11 @@ const GithubProfileReadme = () => {
               width: glowRadius,
               height: glowRadius,
               borderRadius: '50%',
-              backgroundColor: 'rgba(255, 165, 0, 0.5)', // Orange glow
+              backgroundColor: 'transparent', // No background color
               pointerEvents: 'none',
               transition: 'opacity 0.2s',
-              opacity: glowRadius > 0 ? 1 : 0,
               boxShadow: `0 0 ${glowRadius}px rgba(255, 165, 0, 0.8)`, // Glow effect
+              opacity: glowRadius > 0 ? 1 : 0,
             }}
           />
         </div>
@@ -97,14 +97,14 @@ const GithubProfileReadme = () => {
     },
     { 
       name: 'Git', 
-      icon: <Image src="/git-logo.png" alt="Airdrop Logo" width={40} height={40} />, 
+      icon: <Image src="/airdrop-logo.png" alt="Airdrop Logo" width={40} height={40} />, 
       color: 'bg-orange-500/10' 
     }
   ];
 
   const sections = [
     {
-      icon: <Image src="/python-logo.png" alt="Python Logo" width={80} height={80} />,
+      icon: <Image src="/python-logo.png" alt="Python Logo" width={ 80} height={80} />,
       title: 'Python Development',
       content: 'Crafting custom scripts for automation, data processing, and crypto workflows.'
     },
@@ -155,7 +155,7 @@ const GithubProfileReadme = () => {
               onMouseLeave={() => setActiveSection(null)}
             >
               {section.icon}
-              <h2 className="mt-2 font-semibold text-white text-xl">{section.title}</h2> {/* Changed to white and increased size */}
+              <h2 className="mt-2 font-semibold text-white text-xl">{section.title}</h2>
               {activeSection === index && (
                 <p className="mt-2 text-sm text-gray-300">{section.content}</p>
               )}
@@ -192,9 +192,9 @@ const GithubProfileReadme = () => {
                 }`}
                 onClick={() => handleCopyAddress(0)}
               >
-                9SqcZjiUAz9SYBBLwuA9uJG4UzwqC5HNWV2cvXPk3K ro
+                9SqcZjiUAz9SYBBLwuA9uJG4UzwqC5HNWV2cvXPk3Kro
               </code>
-              {copiedAddress === '9SqcZjiUAz9SYBBLwuA9uJG4UzwqC5HNWV2cvXPk3Kro' && (
+              {copiedAddress === '9SqcZjiUAz9 jiUAz9SYBBLwuA9uJG4UzwqC5HNWV2cvXPk3Kro' && (
                 <div className="absolute top-0 right-0 bg-green-400 text-white px-2 py-1 rounded-bl-lg">
                   Copied!
                 </div>
