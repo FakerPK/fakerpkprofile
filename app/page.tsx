@@ -148,7 +148,7 @@ const GithubProfileReadme = () => {
           {sections.map((section, index) => (
             <div 
               key={index}
-              className={`p-4 rounded-lg text-center cursor-pointer transition-all duration-300 ${
+              className={'p-4 rounded-lg text-center cursor-pointer transition-all duration-300 ${
                 activeSection === index 
                   ? 'bg-orange-900/50 scale-105 shadow-lg' 
                   : 'bg-gray-800/50 hover:bg-orange-900/30 hover:scale-105'
