@@ -69,7 +69,7 @@ const GithubProfileReadme = () => {
                 background-position: 0% 50%;
               }
               50% {
-                background-position: 100% 50%;
+ background-position: 100% 50%;
               }
               100% {
                 background-position: 0% 50%;
@@ -187,7 +187,7 @@ const GithubProfileReadme = () => {
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${skill.color} hover:scale-105 transition-transform`}
               >
                 {skill.icon}
-                <span>{skill.name}</span>
+ <span>{skill.name}</span>
               </div>
             ))}
           </div>
@@ -273,7 +273,7 @@ const GithubProfileReadme = () => {
         <div className=" text-center">
           <Image 
             src="https://github-readme-stats.vercel.app/api?username=fakerpk&theme=radical&show_icons=true" 
-            alt="GitHub Stats" 
+            alt="Git Hub Stats" 
             className="mx-auto rounded-lg shadow-lg"
             width={500}
             height={200}
