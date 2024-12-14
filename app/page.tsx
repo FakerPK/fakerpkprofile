@@ -98,10 +98,9 @@ const GithubProfileReadme = () => {
     },
     { 
       name: 'Git', 
-      icon: <Image src="/airdrop-logo.png" alt="Airdrop Logo" width={40} height={40} />, 
+      icon: <Image src ="/airdrop-logo.png" alt="Airdrop Logo" width={40} height={40} />, 
       color: 'bg-orange-500/10' 
     }
- ```javascript
   ];
 
   const sections = [
@@ -136,19 +135,19 @@ const GithubProfileReadme = () => {
   return (
     <div className="relative min-h-screen text-gray-100 p-8">
       <canvas ref={canvasRef} className="fixed inset-0 z-[-1]" />
-      
+
       <div className="relative z-10 max-w-4xl mx-auto bg-transparent backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
         <h1 className="text-6xl font-bold mb-2 text-center">
           <span className="text-white" style={{ fontFamily: 'Fighting Spirit TBS' }}>Faker</span>
           <span className="text-orange-500" style={{ fontFamily: 'Fighting Spirit TBS' }}>PK</span>
         </h1>
         <h2 className="text-2xl text-center text-gray-300 font-['Fighting Spirit']">Faiq Khan</h2>
-        
+
         <div className="grid grid-cols-3 gap-4 mb-8">
           {sections.map((section, index) => (
             <div 
               key={index}
-              className={'p-4 rounded-lg text-center cursor-pointer transition-all duration-300 ${
+              className={`p-4 rounded-lg text-center cursor-pointer transition-all duration-300 ${
                 activeSection === index 
                   ? 'bg-orange-900/50 scale-105 shadow-lg' 
                   : 'bg-gray-800/50 hover:bg-orange-900/30 hover:scale-105'
@@ -174,7 +173,7 @@ const GithubProfileReadme = () => {
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${skill.color} hover:scale-105 transition-transform`}
               >
                 {skill.icon}
-                <span>{skill.name}</span>
+               <span>{skill.name}</span>
               </div>
             ))}
           </div>
