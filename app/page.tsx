@@ -1,28 +1,29 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Code, 
   Wallet, 
   Youtube, 
   Linkedin, 
-  Twitter 
+  Twitter, 
+  Copy 
 } from 'lucide-react';
 
 import Image from 'next/image';
 
 const NeonGridBackground = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [backgroundPosition, setBackgroundPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    // Add explicit type for the event parameter
     const handleMouseMove = (event: MouseEvent) => {
       setMousePosition({ x: event.clientX, y: event.clientY });
+      setBackgroundPosition({ x: event.clientX * 0.1, y: event.clientY * 0.1 });
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     
-    // Explicitly type the event listener removal
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
@@ -52,14 +53,35 @@ const NeonGridBackground = () => {
             transparent 1px, 
             transparent 10px
           )
-        `
+        `,
+        backgroundSize: '200% 200%',
+        backgroundPosition: `${backgroundPosition.x}px ${backgroundPosition.y}px`,
+        animation: 'backgroundAnimation 30s ease infinite'
       }}
-    />
+    >
+      <style>
+        {`
+          @keyframes backgroundAnimation {
+            0% {
+              background-position: 0% 50%;
+            }
+            50% {
+              background-position: 100% 50%;
+            }
+            100% {
+              background-position: 0% 50%;
+            }
+          }
+        `}
+      </style>
+    </div>
   );
 };
 
 const GithubProfileReadme = () => {
   const [activeSection, setActiveSection] = useState<number | null>(null);
+  const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
+  const addressRefs = useRef<(HTMLElement | null)[]>([]);
 
   const socialLinks = [
     { 
@@ -115,12 +137,26 @@ const GithubProfileReadme = () => {
     }
   ];
 
+  const handleCopyAddress = (index: number) => {
+    if (addressRefs.current[index]) {
+      const address = addressRefs.current[index]?.textContent;
+      if (address) {
+        navigator.clipboard.writeText(address);
+        setCopiedAddress(address);
+        setTimeout(() => setCopiedAddress(null), 2000);
+      }
+    }
+  };
+
   return (
     <div className="relative min-h-screen text-gray-100 p-8">
       <NeonGridBackground />
       
-      <div className="relative z-10 max-w-4xl mx-auto bg-gray-900/70 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
-        <h1 className="text-4xl font-bold mb-4 text-center text-orange-500">FakerPK&apos;s Digital Realm 👾</h1>
+      <div className="relative z-10 max-w-4xl mx-auto bg-transparent backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
+        <h1 className="text-4xl font-bold mb-4 text-center">
+          <span className="text-white font-['Fighting Spirit']">Faker</span>
+          <span className="text-orange-500 font-['Fighting Spirit']">PK</span>&apos;s Digital Realm 👾
+        </h1>
         
         <div className="grid grid-cols-3 gap-4 mb-8">
           {sections.map((section, index) => (
@@ -161,17 +197,62 @@ const GithubProfileReadme = () => {
         <div className="bg-gray-800/50 rounded-lg p-6 mb-8">
           <h2 className="text-2xl font-bold mb-4 text-orange-500">💸 Support My Work</h2>
           <div className="grid grid-cols-3 gap-4">
-            <div className="bg-gray-900/50 p-4 rounded-lg">
+            <div className="bg-gray-900/50 p-4 rounded-lg relative">
               <h3 className="text-blue-400 mb-2">Solana</h3>
-              <code className="text-xs break-words">9SqcZjiUAz9SYBBLwuA9uJG4UzwqC5HNWV2cvXPk3Kro</code>
+              <code 
+                ref={(el) => (addressRefs.current[0] = el)} 
+                className={`text-xs break-words cursor-pointer ${
+                  copiedAddress === '9SqcZjiUAz9SYBBLwuA9uJG4UzwqC5HNWV2cvXPk3Kro'
+                    ? 'text-green-400'
+                    : 'hover:text-orange-400'
+                }`}
+                onClick={() => handleCopyAddress(0)}
+              >
+                9SqcZjiUAz9SYBBLwuA9uJG4UzwqC5HNWV2cvXPk3Kro
+              </code>
+              {copiedAddress === '9SqcZjiUAz9SYBBLwuA9uJG4UzwqC5HNWV2cvXPk3Kro' && (
+                <div className="absolute top-0 right-0 bg-green-400 text-white px-2 py-1 rounded-bl-lg">
+                  Copied!
+                </div>
+              )}
             </div>
-            <div className="bg-gray-900/50 p-4 rounded-lg">
+            <div className="bg-gray-900/50 p-4 rounded-lg relative">
               <h3 className="text-green-400 mb-2">EVM</h3>
-              <code className="text-xs break-words">0x2d550c8A47c60A43F8F4908C5d462184A40922Ef</code>
+              <code
+                ref={(el) => (addressRefs.current[1] = el)}
+                className={`text-xs break-words cursor-pointer ${
+                  copiedAddress === '0x2d550c8A47c60A43F8F4908C5d462184A40922Ef'
+                    ? 'text-green-400'
+                    : 'hover:text-orange-400'
+                }`}
+                onClick={() => handleCopyAddress(1)}
+              >
+                0x2d550c8A47c60A43F8F4908C5d462184A40922Ef
+              </code>
+              {copiedAddress === '0x2d550c8A47c60A43F8F4908C5d462184A40922Ef' && (
+                <div className="absolute top-0 right-0 bg-green-400 text-white px-2 py-1 rounded-bl-lg">
+                  Copied!
+                </div>
+              )}
             </div>
-            <div className="bg-gray-900/50 p-4 rounded-lg">
+            <div className="bg-gray-900/50 p-4 rounded-lg relative">
               <h3 className="text-orange-400 mb-2">BTC</h3>
-              <code className="text-xs break-words">bc1qhx7waktcttam9q9nt0ftdguguwg5lzq5hnasmm</code>
+              <code
+                ref={(el) => (addressRefs.current[2] = el)}
+                className={`text-xs break-words cursor-pointer ${
+                  copiedAddress === 'bc1qhx7waktcttam9q9nt0ftdguguwg5lzq5hnasmm'
+                    ? 'text-green-400'
+                    : 'hover:text-orange-400'
+                }`}
+                onClick={() => handleCopyAddress(2)}
+              >
+                bc1qhx7waktcttam9q9nt0ftdguguwg5lzq5hnasmm
+              </code>
+              {copiedAddress === 'bc1qhx7waktcttam9q9nt0ftdguguwg5lzq5hnasmm' && (
+                <div className="absolute top-0 right-0 bg-green-400 text-white px-2 py-1 rounded-bl-lg">
+                  Copied!
+                </div>
+              )}
             </div>
           </div>
         </div>
