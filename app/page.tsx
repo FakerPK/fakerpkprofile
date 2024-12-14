@@ -1,12 +1,6 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Code, 
-  Wallet, 
-  Youtube, 
-  Linkedin, 
-  Twitter 
-} from 'lucide-react';
+import { Code, Wallet, Youtube, Linkedin, Twitter } from 'lucide-react';
 import Image from 'next/image';
 
 const GithubProfileReadme = () => {
@@ -101,25 +95,25 @@ const GithubProfileReadme = () => {
     },
     { 
       name: 'Git', 
-      icon: <Image src="/javascript-logo.png" alt="JavaScript Logo" width={40} height={40} />, 
+      icon: <Image src="/git-logo.png" alt="Airdrop Logo" width={40} height={40} />, 
       color: 'bg-orange-500/10' 
     }
   ];
 
   const sections = [
     {
-      icon: <Image src="/javascript-logo.png" alt="JavaScript Logo" width={40} height={40} />,
+      icon: <Image src="/python-logo.png" alt="Python Logo" width={40} height={40} />,
       title: 'Python Development',
       content: 'Crafting custom scripts for automation, data processing, and crypto workflows.'
     },
     {
-      icon: <Image src="/javascript-logo.png" alt="JavaScript Logo" width={40} height={40} />,
+      icon: <Image src="/game-dev-logo.png" alt="Game Development Logo" width={40} height={40} />,
       title: 'Game Development',
       content: 'Designing immersive gaming experiences and interactive workflows.'
     },
     {
-      icon: <Image src="/javascript-logo.png" alt="JavaScript Logo" width={40} height={40} />,
-      title: 'Crypto Exploration',
+      icon: <Image src="/airdrop-logo.png" alt="Crypto Exploration Logo" width={40} height={40} />,
+      title: 'Airdrops Farming',
       content: 'Innovating airdrop farming techniques and exploring blockchain opportunities.'
     }
   ];
@@ -203,7 +197,7 @@ const GithubProfileReadme = () => {
                   Copied!
                 </div>
               )}
-            </ ```tsx
+            </div>
             <div className="bg-gray-900/50 p-4 rounded-lg relative">
               <h3 className="text-green-400 mb-2">EVM</h3>
               <code
