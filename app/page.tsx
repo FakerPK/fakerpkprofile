@@ -111,14 +111,14 @@ const GithubProfileReadme = () => {
       title: 'Crypto Exploration',
       content: 'Innovating airdrop farming techniques and exploring blockchain opportunities.'
     }
-  ```tsx
   ];
 
   return (
     <div className="relative min-h-screen text-gray-100 p-8">
       <NeonGridBackground />
       
-      <div className="relative z-10 max-w-4xl mx-auto bg-gray-900/70 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
+      <div className="relative z-10 max-w-4xl mx-auto bg ```tsx
+      gray-900/70 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
         <h1 className="text-4xl font-bold mb-4 text-center text-orange-500">FakerPK&apos;s Digital Realm 👾</h1>
         
         <div className="grid grid-cols-3 gap-4 mb-8">
