@@ -1,15 +1,19 @@
-'use client';
-
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   Code, 
   Wallet, 
   Youtube, 
   Linkedin, 
-  Twitter
+  Twitter 
 } from 'lucide-react';
 
 import Image from 'next/image';
+
+const GithubProfileReadme = () => {
+  const [activeSection, setActiveSection] = useState<number | null>(null);
+  const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
+  const addressRefs = useRef<(HTMLElement | null)[]>([]);
+
 
 const NeonGridBackground = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -77,10 +81,6 @@ const NeonGridBackground = () => {
   );
 };
 
-const GithubProfileReadme = () => {
-  const [activeSection, setActiveSection] = useState<number | null>(null);
-  const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
-  const addressRefs = useRef<(HTMLElement | null)[]>([]);
 
   const socialLinks = [
     { 
@@ -198,8 +198,8 @@ const GithubProfileReadme = () => {
           <div className="grid grid-cols-3 gap-4">
             <div className="bg-gray-900/50 p-4 rounded-lg relative">
               <h3 className="text-blue-400 mb-2">Solana</h3>
-              <code 
-                ref={(el) => (addressRefs.current[0] = el)} 
+              <code
+                ref={(el) => (addressRefs.current[0] = el)}
                 className={`text-xs break-words cursor-pointer ${
                   copiedAddress === '9SqcZjiUAz9SYBBLwuA9uJG4UzwqC5HNWV2cvXPk3Kro'
                     ? 'text-green-400'
