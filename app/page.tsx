@@ -151,10 +151,11 @@ const GithubProfileReadme = () => {
       <NeonGridBackground />
       
       <div className="relative z-10 max-w-4xl mx-auto bg-transparent backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
-        <h1 className="text-4xl font-bold mb-4 text-center">
+        <h1 className="text-6xl font-bold mb-2 text-center">
           <span className="text-white font-['Fighting Spirit']">Faker</span>
-          <span className="text-orange-500 font-['Fighting Spirit']">PK</span>&apos;s Digital Realm 👾
+          <span className="text-orange-500 font-['Fighting Spirit']">PK</span>
         </h1>
+        <h2 className="text-2xl text-center text-gray-300 font-['Fighting Spirit']">Faiq Khan</h2>
         
         <div className="grid grid-cols-3 gap-4 mb-8">
           {sections.map((section, index) => (
@@ -182,7 +183,7 @@ const GithubProfileReadme = () => {
           <div className="flex space-x-4">
             {skills.map((skill, index) => (
               <div 
-                key={index} 
+                key={index } 
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${skill.color} hover:scale-105 transition-transform`}
               >
                 {skill.icon}
@@ -266,10 +267,10 @@ const GithubProfileReadme = () => {
             >
               {social.icon}
             </a>
- ))}
+          ))}
         </div>
 
-        <div className="text-center">
+        <div className=" text-center">
           <Image 
             src="https://github-readme-stats.vercel.app/api?username=fakerpk&theme=radical&show_icons=true" 
             alt="GitHub Stats" 
