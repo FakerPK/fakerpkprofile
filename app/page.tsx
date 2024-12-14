@@ -7,7 +7,6 @@ import {
   Linkedin, 
   Twitter 
 } from 'lucide-react';
-
 import Image from 'next/image';
 
 const GithubProfileReadme = () => {
@@ -17,66 +16,56 @@ const GithubProfileReadme = () => {
 
   const NeonGridBackground = () => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const [backgroundPosition, setBackgroundPosition] = useState({ x: 0, y: 0 });
+    const [glowRadius, setGlowRadius] = useState(0);
 
     useEffect(() => {
       const handleMouseMove = (event: MouseEvent) => {
         setMousePosition({ x: event.clientX, y: event.clientY });
-        setBackgroundPosition({ x: event.clientX * 0.1, y: event.clientY * 0.1 });
+        setGlowRadius(100); // Set the glow radius
+      };
+
+      const handleMouseLeave = () => {
+        setGlowRadius(0); // Reset glow radius when mouse leaves
       };
 
       window.addEventListener('mousemove', handleMouseMove);
-      
+      window.addEventListener('mouseleave', handleMouseLeave);
+
       return () => {
         window.removeEventListener('mousemove', handleMouseMove);
+        window.removeEventListener('mouseleave', handleMouseLeave);
       };
     }, []);
 
     return (
-      <div 
-        className="fixed inset-0 z-[-1] bg-gradient-to-br from-gray-900 to-black overflow-hidden"
-        style={{
-          backgroundImage: `
-            radial-gradient(
-              circle at ${mousePosition.x}px ${mousePosition.y}px, 
-              rgba(255, 128, 0, 0.1), 
-              transparent 50%
-            ),
-            repeating-linear-gradient(
-              0deg, 
-              rgba(255, 128, 0, 0.05) 0px, 
-              rgba(255, 128, 0, 0.05) 1px, 
-              transparent 1px, 
-              transparent 10px
-            ),
-            repeating-linear-gradient(
-              90deg, 
-              rgba(255, 128, 0, 0.05) 0px, 
-              rgba(255, 128, 0, 0.05) 1px, 
-              transparent 1px, 
-              transparent 10px
-            )
-          `,
-          backgroundSize: '200% 200%',
-          backgroundPosition: `${backgroundPosition.x}px ${backgroundPosition.y}px`,
-          animation: 'backgroundAnimation 30s ease infinite'
-        }}
-      >
-        <style>
-          {`
-            @keyframes backgroundAnimation {
-              0% {
-                background-position: 0% 50%;
-              }
-              50% {
- background-position: 100% 50%;
-              }
-              100% {
-                background-position: 0% 50%;
-              }
-            }
-          `}
-        </style>
+      <div className="fixed inset-0 z-[-1] bg-gray-800 overflow-hidden">
+        <div
+          className="grid grid-cols-20 grid-rows-20 gap-0"
+          style={{
+            width: '100%',
+            height: '100%',
+            backgroundSize: '50px 50px',
+            backgroundImage: `
+              linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
+            `,
+          }}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              top: mousePosition.y - glowRadius / 2,
+              left: mousePosition.x - glowRadius / 2,
+              width: glowRadius,
+              height: glowRadius,
+              borderRadius: '50%',
+              backgroundColor: 'rgba(255, 165, 0, 0.5)', // Orange glow
+              pointerEvents: 'none',
+              transition: 'opacity 0.2s',
+              opacity: glowRadius > 0 ? 1 : 0,
+            }}
+          />
+        </div>
       </div>
     );
   };
@@ -102,34 +91,34 @@ const GithubProfileReadme = () => {
   const skills = [
     { 
       name: 'Python', 
-      icon: <Code className="text-blue-500" />, 
+      icon: <Image src="/python-logo.png" alt="Python Logo" width={40} height={40} />, 
       color: 'bg-blue-500/10' 
     },
     { 
       name: 'JavaScript', 
-      icon: <Code className="text-yellow-500" />, 
+      icon: <Image src="/javascript-logo.png" alt="JavaScript Logo" width={40} height={40} />, 
       color: 'bg-yellow-500/10' 
     },
     { 
       name: 'Git', 
-      icon: <Code className="text-orange-500" />, 
+      icon: <Image src="/javascript-logo.png" alt="JavaScript Logo" width={40} height={40} />, 
       color: 'bg-orange-500/10' 
     }
   ];
 
   const sections = [
     {
-      icon: <Code color="#FF6B00" size={48} />,
+      icon: <Image src="/javascript-logo.png" alt="JavaScript Logo" width={40} height={40} />,
       title: 'Python Development',
       content: 'Crafting custom scripts for automation, data processing, and crypto workflows.'
     },
     {
-      icon: <Code color="#FF6B00" size={48} />,
+      icon: <Image src="/javascript-logo.png" alt="JavaScript Logo" width={40} height={40} />,
       title: 'Game Development',
       content: 'Designing immersive gaming experiences and interactive workflows.'
     },
     {
-      icon: <Wallet color="#FF6B00" size={48} />,
+      icon: <Image src="/javascript-logo.png" alt="JavaScript Logo" width={40} height={40} />,
       title: 'Crypto Exploration',
       content: 'Innovating airdrop farming techniques and exploring blockchain opportunities.'
     }
@@ -183,11 +172,11 @@ const GithubProfileReadme = () => {
           <div className="flex space-x-4">
             {skills.map((skill, index) => (
               <div 
-                key={index } 
+                key={index} 
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${skill.color} hover:scale-105 transition-transform`}
               >
                 {skill.icon}
- <span>{skill.name}</span>
+                <span>{skill.name}</span>
               </div>
             ))}
           </div>
@@ -214,7 +203,7 @@ const GithubProfileReadme = () => {
                   Copied!
                 </div>
               )}
-            </div>
+            </ ```tsx
             <div className="bg-gray-900/50 p-4 rounded-lg relative">
               <h3 className="text-green-400 mb-2">EVM</h3>
               <code
@@ -270,7 +259,7 @@ const GithubProfileReadme = () => {
           ))}
         </div>
 
-        <div className=" text-center">
+        <div className="text-center">
           <Image 
             src="https://github-readme-stats.vercel.app/api?username=fakerpk&theme=radical&show_icons=true" 
             alt="Git Hub Stats" 
