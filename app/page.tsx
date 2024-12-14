@@ -45,6 +45,7 @@ const GithubProfileReadme = () => {
             `,
           }}
         >
+          {/* Glow effect for grid lines only */}
           <div
             style={{
               position: 'absolute',
@@ -57,6 +58,7 @@ const GithubProfileReadme = () => {
               pointerEvents: 'none',
               transition: 'opacity 0.2s',
               opacity: glowRadius > 0 ? 1 : 0,
+              boxShadow: `0 0 ${glowRadius}px rgba(255, 165, 0, 0.8)`, // Glow effect
             }}
           />
         </div>
@@ -102,17 +104,17 @@ const GithubProfileReadme = () => {
 
   const sections = [
     {
-      icon: <Image src="/python-logo.png" alt="Python Logo" width={40} height={40} />,
+      icon: <Image src="/python-logo.png" alt="Python Logo" width={80} height={80} />,
       title: 'Python Development',
       content: 'Crafting custom scripts for automation, data processing, and crypto workflows.'
     },
     {
-      icon: <Image src="/game-dev-logo.png" alt="Game Development Logo" width={40} height={40} />,
+      icon: <Image src="/game-dev-logo.png" alt="Game Development Logo" width={80} height={80} />,
       title: 'Game Development',
       content: 'Designing immersive gaming experiences and interactive workflows.'
     },
     {
-      icon: <Image src="/airdrop-logo.png" alt="Crypto Exploration Logo" width={40} height={40} />,
+      icon: <Image src="/airdrop-logo.png" alt="Crypto Exploration Logo" width={80} height={80} />,
       title: 'Airdrops Farming',
       content: 'Innovating airdrop farming techniques and exploring blockchain opportunities.'
     }
@@ -153,7 +155,7 @@ const GithubProfileReadme = () => {
               onMouseLeave={() => setActiveSection(null)}
             >
               {section.icon}
-              <h2 className="mt-2 font-semibold text-orange-400">{section.title}</h2>
+              <h2 className="mt-2 font-semibold text-white text-xl">{section.title}</h2> {/* Changed to white and increased size */}
               {activeSection === index && (
                 <p className="mt-2 text-sm text-gray-300">{section.content}</p>
               )}
@@ -190,7 +192,7 @@ const GithubProfileReadme = () => {
                 }`}
                 onClick={() => handleCopyAddress(0)}
               >
-                9SqcZjiUAz9SYBBLwuA9uJG4UzwqC5HNWV2cvXPk3Kro
+                9SqcZjiUAz9SYBBLwuA9uJG4UzwqC5HNWV2cvXPk3K ro
               </code>
               {copiedAddress === '9SqcZjiUAz9SYBBLwuA9uJG4UzwqC5HNWV2cvXPk3Kro' && (
                 <div className="absolute top-0 right-0 bg-green-400 text-white px-2 py-1 rounded-bl-lg">
