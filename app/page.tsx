@@ -152,8 +152,8 @@ const GithubProfileReadme = () => {
       
       <div className="relative z-10 max-w-4xl mx-auto bg-transparent backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
         <h1 className="text-6xl font-bold mb-2 text-center">
-          <span className="text-white font-['Fighting Spirit']">Faker</span>
-          <span className="text-orange-500 font-['Fighting Spirit']">PK</span>
+          <span className="text-white" style={{ fontFamily: 'Fighting Spirit TBS' }}>Faker</span>
+          <span className="text-orange-500" style={{ fontFamily: 'Fighting Spirit TBS' }}>PK</span>
         </h1>
         <h2 className="text-2xl text-center text-gray-300 font-['Fighting Spirit']">Faiq Khan</h2>
         
