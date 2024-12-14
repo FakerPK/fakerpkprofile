@@ -3,14 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Code, 
-  Gaming, 
   Wallet, 
   Youtube, 
   Linkedin, 
   Twitter 
-} from 'lucide-react'; // Remove unavailable icons
+} from 'lucide-react';
 
-import Image from 'next/image'; // Import Next.js Image component
+import Image from 'next/image';
 
 const NeonGridBackground = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -102,9 +101,9 @@ const GithubProfileReadme = () => {
       content: 'Crafting custom scripts for automation, data processing, and crypto workflows.'
     },
     {
-      icon: <Gaming color="#FF6B00" size={48} />,
-      title: 'UEFN Map Creation',
-      content: 'Designing immersive Fortnite experiences that challenge and entertain players.'
+      icon: <Code color="#FF6B00" size={48} />, // Replaced Gaming with Code
+      title: 'Game Development',
+      content: 'Designing immersive gaming experiences and interactive workflows.'
     },
     {
       icon: <Wallet color="#FF6B00" size={48} />,
@@ -117,8 +116,7 @@ const GithubProfileReadme = () => {
     <div className="relative min-h-screen text-gray-100 p-8">
       <NeonGridBackground />
       
-      <div className="relative z-10 max-w-4xl mx-auto bg ```tsx
-      gray-900/70 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
+      <div className="relative z-10 max-w-4xl mx-auto bg-gray-900/70 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
         <h1 className="text-4xl font-bold mb-4 text-center text-orange-500">FakerPK&apos;s Digital Realm 👾</h1>
         
         <div className="grid grid-cols-3 gap-4 mb-8">
@@ -194,8 +192,8 @@ const GithubProfileReadme = () => {
             src="https://github-readme-stats.vercel.app/api?username=fakerpk&theme=radical&show_icons=true" 
             alt="GitHub Stats" 
             className="mx-auto rounded-lg shadow-lg"
-            width={500} // Set appropriate width
-            height={200} // Set appropriate height
+            width={500}
+            height={200}
           />
         </div>
       </div>
