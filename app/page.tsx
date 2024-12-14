@@ -7,64 +7,63 @@ const GithubProfileReadme = () => {
   const [activeSection, setActiveSection] = useState<number | null>(null);
   const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
   const addressRefs = useRef<(HTMLElement | null)[]>([null, null, null]); // Initialize with nulls
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const allNeighbors = useRef<{ x: number; y: number }[]>([]); // Store trail positions
+  const CELL_SIZE = 20; // Size of each grid cell
+  const STROKE_WEIGHT = 2; // Thickness of the stroke
+  const BACKGROUND_COLOR = 'rgba(0, 0, 0, 1)'; // Background color (black)
 
-  const NeonGridBackground = () => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const [glowRadius, setGlowRadius] = useState(0);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let currentRow = -1;
+    let currentCol = -1;
 
-    useEffect(() => {
-      const handleMouseMove = (event: MouseEvent) => {
-        setMousePosition({ x: event.clientX, y: event.clientY });
-        setGlowRadius(100); // Set the glow radius
-      };
+    const handleMouseMove = (event: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      const row = Math.floor((event.clientY - rect.top) / CELL_SIZE);
+      const col = Math.floor((event.clientX - rect.left) / CELL_SIZE);
 
-      const handleMouseLeave = () => {
-        setGlowRadius(0); // Reset glow radius when mouse leaves
-      };
+      // If mouse moves to a new cell, update and store trail positions
+      if (row !== currentRow || col !== currentCol) {
+        currentRow = row;
+        currentCol = col;
+        allNeighbors.current.push({ x: col * CELL_SIZE, y: row * CELL_SIZE }); // Add new position to the trail
+      }
+    };
 
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseleave', handleMouseLeave);
+    const draw = () => {
+      ctx.fillStyle = BACKGROUND_COLOR;
+      ctx.fillRect(0, 0, canvas.width, canvas.height); // Clear the screen with background color
 
-      return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-        window.removeEventListener('mouseleave', handleMouseLeave);
-      };
-    }, []);
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)'; // White color with transparency
+      ctx.lineWidth = STROKE_WEIGHT;
+      ctx.lineJoin = 'round';
 
-    return (
-      <div className="fixed inset-0 z-[-1] bg-gray-800 overflow-hidden">
-        <div
-          className="grid grid-cols-20 grid-rows-20 gap-0"
-          style={{
-            width: '100%',
-            height: '100%',
-            backgroundSize: '100px 100px', // Increase grid size
-            backgroundImage: `
-              linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
-            `,
-          }}
-        >
-          {/* Glow effect for grid lines only */}
-          <div
-            style={{
-              position: 'absolute',
-              top: mousePosition.y - glowRadius / 2,
-              left: mousePosition.x - glowRadius / 2,
-              width: glowRadius,
-              height: glowRadius,
-              borderRadius: '50%',
-              backgroundColor: 'transparent', // No background color
-              pointerEvents: 'none',
-              transition: 'opacity 0.2s',
-              boxShadow: `0 0 ${glowRadius}px rgba(255, 165, 0, 0.8)`, // Glow effect
-              opacity: glowRadius > 0 ? 1 : 0,
-            }}
-          />
-        </div>
-      </div>
-    );
-  };
+      // Draw trail effect
+      for (let i = 0; i < allNeighbors.current.length; i++) {
+        const pos = allNeighbors.current[i];
+        ctx.beginPath();
+        ctx.arc(pos.x + CELL_SIZE / 2, pos.y + CELL_SIZE / 2, CELL_SIZE / 2, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // Optional: Remove old positions to limit trail length
+      if (allNeighbors.current.length > 50) {
+        allNeighbors.current.shift(); // Remove the oldest position
+      }
+
+      requestAnimationFrame(draw); // Request the next frame
+    };
+
+    canvas.addEventListener('mousemove', handleMouseMove);
+    requestAnimationFrame(draw); // Start the drawing loop
+
+    return () => {
+      canvas.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
 
   const socialLinks = [
     { 
@@ -104,7 +103,7 @@ const GithubProfileReadme = () => {
 
   const sections = [
     {
-      icon: <Image src="/python-logo.png" alt="Python Logo" width={ 80} height={80} />,
+      icon: < Image src="/python-logo.png" alt="Python Logo" width={80} height={80} />,
       title: 'Python Development',
       content: 'Crafting custom scripts for automation, data processing, and crypto workflows.'
     },
@@ -133,7 +132,7 @@ const GithubProfileReadme = () => {
 
   return (
     <div className="relative min-h-screen text-gray-100 p-8">
-      <NeonGridBackground />
+      <canvas ref={canvasRef} className="fixed inset-0 z-[-1]" />
       
       <div className="relative z-10 max-w-4xl mx-auto bg-transparent backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
         <h1 className="text-6xl font-bold mb-2 text-center">
@@ -194,7 +193,7 @@ const GithubProfileReadme = () => {
               >
                 9SqcZjiUAz9SYBBLwuA9uJG4UzwqC5HNWV2cvXPk3Kro
               </code>
-              {copiedAddress === '9SqcZjiUAz9 jiUAz9SYBBLwuA9uJG4UzwqC5HNWV2cvXPk3Kro' && (
+              {copiedAddress === '9SqcZjiUAz9SYBBLwuA9uJG4UzwqC5HNWV2cvXPk3Kro' && (
                 <div className="absolute top-0 right-0 bg-green-400 text-white px-2 py-1 rounded-bl-lg">
                   Copied!
                 </div>
