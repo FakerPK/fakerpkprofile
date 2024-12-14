@@ -78,6 +78,7 @@ const GithubProfileReadme = () => {
       name: 'Discord Server', 
       icon: <Discord className="text-purple-500" />, 
       link: 'https://discord.gg/Y2zXVwKe'
+    }
   ];
 
   const skills = [
