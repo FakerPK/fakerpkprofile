@@ -7,11 +7,10 @@ import {
   Wallet, 
   Youtube, 
   Linkedin, 
-  Twitter, 
-  PythonIcon, 
-  Discord,
-  JavaScriptIcon 
-} from 'lucide-react';
+  Twitter 
+} from 'lucide-react'; // Remove unavailable icons
+
+import Image from 'next/image'; // Import Next.js Image component
 
 const NeonGridBackground = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -60,7 +59,8 @@ const NeonGridBackground = () => {
 const GithubProfileReadme = () => {
   const [activeSection, setActiveSection] = useState(null);
 
-  const socialLinks = [
+  const socialLinks = ```tsx
+  [
     { 
       name: 'LinkedIn', 
       icon: <Linkedin className="text-blue-500" />, 
@@ -75,23 +75,18 @@ const GithubProfileReadme = () => {
       name: 'YouTube', 
       icon: <Youtube className="text-red-500" />, 
       link: 'https://youtube.com/c/FakerPK' 
-    },
-    { 
-      name: 'Discord Server', 
-      icon: <Discord className="text-purple-500" />, 
-      link: 'https://discord.gg/Y2zXVwKe'
     }
   ];
 
   const skills = [
     { 
       name: 'Python', 
-      icon: <PythonIcon className="text-blue-500" />, 
+      icon: <Code className="text-blue-500" />, 
       color: 'bg-blue-500/10' 
     },
     { 
       name: 'JavaScript', 
-      icon: <JavaScriptIcon className="text-yellow-500" />, 
+      icon: <Code className="text-yellow-500" />, 
       color: 'bg-yellow-500/10' 
     },
     { 
@@ -124,14 +119,13 @@ const GithubProfileReadme = () => {
       <NeonGridBackground />
       
       <div className="relative z-10 max-w-4xl mx-auto bg-gray-900/70 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
-        <h1 className="text-4xl font-bold mb-4 text-center text-orange-500">FakerPK's Digital Realm 👾</h1>
+        <h1 className="text-4xl font-bold mb-4 text-center text-orange-500">FakerPK&apos;s Digital Realm 👾</h1>
         
         <div className="grid grid-cols-3 gap-4 mb-8">
           {sections.map((section, index) => (
             <div 
               key={index}
-              className={`
-                p-4 rounded-lg text-center cursor-pointer transition-all duration-300
+              className={`p-4 rounded-lg text-center cursor-pointer transition-all duration-300
                 ${activeSection === index 
                   ? 'bg-orange-900/50 scale-105 shadow-lg' 
                   : 'bg-gray-800/50 hover:bg-orange-900/30 hover:scale-105'}
@@ -154,10 +148,7 @@ const GithubProfileReadme = () => {
             {skills.map((skill, index) => (
               <div 
                 key={index} 
-                className={`
-                  flex items-center space-x-2 px-4 py-2 rounded-lg
-                  ${skill.color} hover:scale-105 transition-transform
-                `}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${skill.color} hover:scale-105 transition-transform`}
               >
                 {skill.icon}
                 <span>{skill.name}</span>
@@ -172,6 +163,7 @@ const GithubProfileReadme = () => {
             <div className="bg-gray-900/50 p-4 rounded-lg">
               <h3 className="text-blue-400 mb-2">Solana</h3>
               <code className="text-xs break-words">9SqcZjiUAz9SYBBLwuA9uJG4UzwqC5HNWV2cvXPk3Kro</code>
+            ```tsx
             </div>
             <div className="bg-gray-900/50 p-4 rounded-lg">
               <h3 className="text-green-400 mb-2">EVM</h3>
@@ -199,10 +191,12 @@ const GithubProfileReadme = () => {
         </div>
 
         <div className="text-center">
-          <img 
+          <Image 
             src="https://github-readme-stats.vercel.app/api?username=fakerpk&theme=radical&show_icons=true" 
             alt="GitHub Stats" 
             className="mx-auto rounded-lg shadow-lg"
+            width={500} // Set appropriate width
+            height={200} // Set appropriate height
           />
         </div>
       </div>
