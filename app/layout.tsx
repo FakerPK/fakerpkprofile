@@ -32,3 +32,14 @@ export default function RootLayout({
     </html>
   );
 }
+// In app/layout.tsx
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <head>
+        <link href="https://fonts.cdnfonts.com/css/fighting-spirit" rel="stylesheet" />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
+}
