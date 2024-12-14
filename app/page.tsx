@@ -17,6 +17,8 @@ const GithubProfileReadme = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
+    if (!ctx) return; // Check if ctx is null
+
     let currentRow = -1;
     let currentCol = -1;
 
@@ -103,7 +105,7 @@ const GithubProfileReadme = () => {
 
   const sections = [
     {
-      icon: < Image src="/python-logo.png" alt="Python Logo" width={80} height={80} />,
+      icon: <Image src="/python-logo.png" alt="Python Logo" width={80} height={80} />,
       title: 'Python Development',
       content: 'Crafting custom scripts for automation, data processing, and crypto workflows.'
     },
