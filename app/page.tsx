@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
-import { Code, Wallet, Youtube, Linkedin, Twitter } from 'lucide-react';
+import { Youtube, Linkedin, Twitter } from 'lucide-react';
 import Image from 'next/image';
 
 const GithubProfileReadme = () => {
