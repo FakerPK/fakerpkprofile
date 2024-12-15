@@ -183,9 +183,6 @@ const GithubProfileReadme = () => {
   };
 
   return (
-    <div className="relative min-h-screen text-gray-100 p-8">
-      <canvas ref={canvasRef} className="fixed inset-0 z-[-1]" />
-
       <div className="relative z-10 max-w-4xl mx-auto bg-transparent backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
         <h1 className="text-6xl font-bold mb-2 text-center">
           <span className="text-white" style={{ fontFamily: 'Fighting Spirit TBS' }}>Faker</span>
