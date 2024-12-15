@@ -306,16 +306,8 @@ const GithubProfileReadme = () => {
             </a>
           ))}
         </div>
-
-        <div className="text-center">
-          <Image 
-            src="https://github-readme-stats.vercel.app/api?username=fakerpk&theme=radical&show_icons=true" 
-            alt="Git Hub Stats" 
-            className="mx-auto rounded-lg shadow-lg"
-            width={500}
-            height={200}
-          />
-        </div>
+      </div>
+      
       </div>
     </div>
   );
